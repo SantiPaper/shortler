@@ -1,0 +1,43 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  animation: fadeIn 500ms forwards;
+}
+
+.form__input {
+  background-color: transparent;
+  border: 1px solid var(--clr-gray-100);
+  border-radius: 99rem;
+  padding: 2rem 0 2rem 3rem;
+  font-size: var(--font-size-200);
+  width: 50rem;
+}
+
+.form__button {
+  padding: 1.6rem 3.2rem;
+  background-color: var(--clr-gray-100);
+  border: none;
+  border-radius: 99rem;
+  color: var(--clr-gray-900);
+  font-weight: 800;
+  margin-left: -13.45rem;
+  cursor: pointer;
+  font-size: var(--font-size-200);
+}
