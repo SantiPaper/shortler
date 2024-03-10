@@ -1,9 +1,10 @@
 import app from "./app.js";
 import { sequelize } from "./db/db.js";
+const { PORT } = process.env;
 
 import "./models/shortUrls.js";
 
-const port = 3000;
+const port = PORT;
 async function main() {
   try {
     await sequelize.sync();
