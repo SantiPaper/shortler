@@ -8,7 +8,6 @@ const port = PORT;
 async function main() {
   try {
     await sequelize.sync();
-    console.log("Conectado");
     app.listen(port);
     console.log(`Servidor escuchando en ${port}`);
   } catch (error) {
