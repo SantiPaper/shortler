@@ -1,3 +1,3 @@
 export const shortenerUrl = () => {
-  return Math.random().toString(36).substring(2, 5);
+  return Math.random().toString(36).substring(6);
 };
