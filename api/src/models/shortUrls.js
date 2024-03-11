@@ -4,15 +4,14 @@ import { sequelize } from "../db/db.js";
 export const shortUrls = sequelize.define(
   "shortUrls",
   {
-    id: {
-      type: DataTypes.INTEGER,
+    short_url: {
+      type: DataTypes.STRING,
       primaryKey: true,
-      autoIncrement: true,
     },
-    original_url: {
+    name: {
       type: DataTypes.STRING,
     },
-    short_url: {
+    original_url: {
       type: DataTypes.STRING,
     },
   },
