@@ -16,7 +16,7 @@ export const getSingleUrl = async (req, res) => {
   if (url !== null) {
     res.redirect("https://www.youtube.com/watch?v=4WvX9dBjiJo");
   } else {
-    res.status(404).json({ error: "Que haces pancho" });
+    res.status(404).json({ error: "Not found" });
   }
 };
 
@@ -36,5 +36,16 @@ export const createUrl = async (req, res) => {
     res.send(newData);
   } else {
     return res.status(400).json({ error: "Error url shortener" });
+  }
+};
+
+export const deleteUrl = async (req, res) => {
+  const shorterUrl = req.params.short_url;
+  const url = await shortUrls.findOne({ where: { short_url: shorterUrl } });
+  if (url) {
+    await url.destroy();
+    res.status(200).json({ message: "URL deleted successfully" });
+  } else {
+    res.status(404).json({ error: "URL not found" });
   }
 };
