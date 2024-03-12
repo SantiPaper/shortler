@@ -10,9 +10,11 @@ export const shortUrls = sequelize.define(
     },
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     original_url: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   {
