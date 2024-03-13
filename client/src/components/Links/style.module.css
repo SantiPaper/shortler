@@ -16,34 +16,5 @@
   gap: 4rem;
   margin-top: 12rem;
   margin-bottom: 4rem;
-
   animation: forwards 500ms fadeIn;
-}
-
-.links__article {
-  background-color: var(--clr-gray-700);
-  padding: 1.6rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  width: 30rem;
-  max-width: 30rem;
-  border-radius: 0.6rem;
-  transition: 0.3s;
-}
-
-.links__article a {
-  color: #75dfe2;
-}
-
-.links__article:hover {
-  transform: scale(1.02);
-}
-
-.title {
-  font-size: var(--font-size-400);
-}
-
-.links__article p {
-  font-size: var(--font-size-100);
 }

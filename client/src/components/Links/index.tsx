@@ -1,86 +1,38 @@
+import { Link } from "../Link";
 import style from "./style.module.css";
 
 export const Links = () => {
+  const mockArr = [
+    {
+      name: "Perfil linkedin",
+      link: "https://www.facebook.com/irina.montanari/?locale=es_LA",
+      id: 1,
+      shorter: "https://www.vercel.com/asdfasf",
+    },
+    {
+      name: "Perfil linkedin",
+      link: "https://www.facebook.com/irina.montanari/?locale=es_LA",
+      id: 3,
+      shorter: "https://www.vercel.com/asdfasf",
+    },
+    {
+      name: "Perfil linkedin",
+      link: "https://www.facebook.com/irina.montanari/?locale=es_LA",
+      id: 2,
+      shorter: "https://www.vercel.com/asdfasf",
+    },
+  ];
+
   return (
     <section className={style.links}>
-      <article className={style.links__article}>
-        <h3 className={style.title}>Perfil facu facebook</h3>
-        <div>
-          <p>Link original</p>
-          <a href="https://www.facebook.com/irina.montanari/?locale=es_LA">
-            https://www.facebook.com/irina.montanari/?locale=es_LA
-          </a>
-        </div>
-        <div>
-          <p>Link recortado</p>
-          <a href="#">https://asgasgasfvxvasfa</a>
-        </div>
-      </article>
-      <article className={style.links__article}>
-        <h3 className={style.title}>Perfil facu facebook</h3>
-        <div>
-          <p>Link original</p>
-          <a href="https://www.facebook.com/irina.montanari/?locale=es_LA">
-            https://www.facebook.com/irina.montanari/?locale=es_LA
-          </a>
-        </div>
-        <div>
-          <p>Link recortado</p>
-          <a href="#">https://asgasgasfvxvasfa</a>
-        </div>
-      </article>
-      <article className={style.links__article}>
-        <h3 className={style.title}>Perfil facu facebook</h3>
-        <div>
-          <p>Link original</p>
-          <a href="https://www.facebook.com/irina.montanari/?locale=es_LA">
-            https://www.facebook.com/irina.montanari/?locale=es_LA
-          </a>
-        </div>
-        <div>
-          <p>Link recortado</p>
-          <a href="#">https://asgasgasfvxvasfa</a>
-        </div>
-      </article>
-      <article className={style.links__article}>
-        <h3 className={style.title}>Perfil facu facebook</h3>
-        <div>
-          <p>Link original</p>
-          <a href="https://www.facebook.com/irina.montanari/?locale=es_LA">
-            https://www.facebook.com/irina.montanari
-          </a>
-        </div>
-        <div>
-          <p>Link recortado</p>
-          <a href="#">https://asgasgasfvxvasfa</a>
-        </div>
-      </article>
-      <article className={style.links__article}>
-        <h3 className={style.title}>Perfil facu facebook</h3>
-        <div>
-          <p>Link original</p>
-          <a href="https://www.facebook.com/irina.montanari/?locale=es_LA">
-            https://www.facebook.com/irina.montanari/?locale=es_LA
-          </a>
-        </div>
-        <div>
-          <p>Link recortado</p>
-          <a href="#">https://asgasgasfvxvasfa</a>
-        </div>
-      </article>
-      <article className={style.links__article}>
-        <h3 className={style.title}>Perfil facu facebook</h3>
-        <div>
-          <p>Link original</p>
-          <a href="https://www.facebook.com/irina.montanari/?locale=es_LA">
-            https://www.facebook.com/irina.montanari/?locale=es_LA
-          </a>
-        </div>
-        <div>
-          <p>Link recortado</p>
-          <a href="#">https://asgasgasfvxvasfa</a>
-        </div>
-      </article>
+      {mockArr.map((link) => (
+        <Link
+          link={link.link}
+          name={link.name}
+          key={link.id}
+          shorter={link.shorter}
+        />
+      ))}
     </section>
   );
 };
