@@ -1,8 +1,13 @@
 import { Link } from "../Link";
 import style from "./style.module.css";
+import { Links as typeLinks } from "../../../types/url";
 
-export const Links = () => {
-  const mockArr = [
+type Props = {
+  data: typeLinks[];
+};
+
+export const Links = ({ data }: Props) => {
+  /* const mockArr = [
     {
       name: "Perfil linkedin",
       link: "https://www.facebook.com/irina.montanari/?locale=es_LA",
@@ -21,16 +26,16 @@ export const Links = () => {
       id: 2,
       shorter: "https://www.vercel.com/asdfasf",
     },
-  ];
+  ]; */
 
   return (
     <section className={style.links}>
-      {mockArr.map((link) => (
+      {data.map((link) => (
         <Link
-          link={link.link}
+          link={link.original_url}
           name={link.name}
-          key={link.id}
-          shorter={link.shorter}
+          key={link.short_url}
+          shorter={link.short_url}
         />
       ))}
     </section>
