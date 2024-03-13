@@ -14,7 +14,7 @@ export const getSingleUrl = async (req, res) => {
   const shorterUrl = req.params.short_url;
   const url = await shortUrls.findOne({ where: { short_url: shorterUrl } });
   if (url !== null) {
-    res.redirect("https://www.youtube.com/watch?v=4WvX9dBjiJo");
+    res.redirect(url.original_url);
   } else {
     res.status(404).json({ error: "Not found" });
   }
