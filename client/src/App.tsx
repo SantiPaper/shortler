@@ -10,7 +10,7 @@ function App() {
     <div className={style.app}>
       <Container>
         <Header />
-        <main>
+        <main className="main">
           <Hero />
           <Form />
           <Links />
