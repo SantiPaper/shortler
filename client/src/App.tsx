@@ -12,7 +12,7 @@ import { Links as typeLinks } from "../types/url";
 function App() {
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/url");
+      const response = await axios.get(import.meta.env.VITE_DB_URL);
       setData(response.data);
       console.log(data);
     } catch (error) {
@@ -32,19 +32,18 @@ function App() {
 
   const onSubmit = async (name: string, original_url: string) => {
     try {
-      const response = await axios.post("http://localhost:3001/url", {
+      const response = await axios.post(import.meta.env.VITE_DB_URL, {
         name,
         original_url,
       });
       fetchData();
 
       console.log("Respuesta del servidor:", response.data);
-      // Puedes hacer algo más con la respuesta si es necesario
     } catch (error) {
       console.error("Error al enviar la solicitud:", error);
-      // Puedes manejar el error de manera más específica aquí
     }
   };
+
   return (
     <div className={style.app}>
       <Container>
