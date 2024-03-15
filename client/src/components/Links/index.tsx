@@ -35,7 +35,7 @@ export const Links = ({ data }: Props) => {
           <th>Nombre</th>
           <th>Url acortada</th>
           <th>Url original</th>
-          <th>Creada en</th>
+          <th>Creada</th>
         </tr>
       </thead>
       <tbody>
@@ -45,6 +45,7 @@ export const Links = ({ data }: Props) => {
             name={link.name}
             key={link.short_url}
             shorter={link.short_url}
+            createAt={link.createdAt}
           />
         ))}
       </tbody>
