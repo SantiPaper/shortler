@@ -10,18 +10,17 @@ import axios from "axios";
 import { Links as typeLinks } from "../types/url";
 
 function App() {
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/url");
+      setData(response.data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const [data, setData] = useState<Array<typeLinks>>([]);
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:3001/url");
-        setData(response.data);
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     fetchData();
   }, []);
 
@@ -37,6 +36,7 @@ function App() {
         name,
         original_url,
       });
+      fetchData();
 
       console.log("Respuesta del servidor:", response.data);
       // Puedes hacer algo más con la respuesta si es necesario
