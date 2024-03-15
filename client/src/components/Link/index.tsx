@@ -8,16 +8,20 @@ type Props = {
 
 export const Link = ({ name, link, shorter }: Props) => {
   return (
-    <article className={style.links__article}>
-      <h3 className={style.title}>{name}</h3>
-      <div>
-        <p>Link original</p>
+    <tr className={style.links__tr}>
+      <td className={style.links__td}>
+        <h3 className={style.title}>{name}</h3>
+      </td>
+      <td className={style.links__td}>
+        <a href="#">
+          {"https://www.shortler/"}
+          {shorter}
+        </a>
+      </td>
+      <td className={style.links__td}>
         <a href={link}>{link}</a>
-      </div>
-      <div>
-        <p>Link recortado</p>
-        <a href="#">{shorter}</a>
-      </div>
-    </article>
+      </td>
+      <td className={style.links__td}>2023</td>
+    </tr>
   );
 };
