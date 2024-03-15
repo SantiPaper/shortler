@@ -11,7 +11,11 @@ export const Form = ({ onSubmit }: Props) => {
     const form = ev.currentTarget;
     const formData = new FormData(form);
     const name = formData.get("name")!.toString();
-    const link = formData.get("link")!.toString();
+    let link = formData.get("link")!.toString();
+
+    if (!link.startsWith("https://www.")) {
+      link = "https://www." + link;
+    }
 
     const linkOnSubmit = {
       name,
