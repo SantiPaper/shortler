@@ -10,11 +10,15 @@
 
 .links {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 4rem;
-  margin-top: 12rem;
-  margin-bottom: 4rem;
   animation: forwards 500ms fadeIn;
+  background-color: var(--clr-gray-700);
+  color: var(--clr-gray-100);
+  margin-top: 6rem;
+  margin-bottom: 4rem;
+}
+
+.links tr th {
+  font-size: var(--font-size-200);
+  padding: 0.5rem;
+  text-align: start;
 }

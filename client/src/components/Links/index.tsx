@@ -29,15 +29,25 @@ export const Links = ({ data }: Props) => {
   ]; */
 
   return (
-    <section className={style.links}>
-      {data.map((link) => (
-        <Link
-          link={link.original_url}
-          name={link.name}
-          key={link.short_url}
-          shorter={link.short_url}
-        />
-      ))}
-    </section>
+    <table className={style.links}>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Url acortada</th>
+          <th>Url original</th>
+          <th>Creada en</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((link) => (
+          <Link
+            link={link.original_url}
+            name={link.name}
+            key={link.short_url}
+            shorter={link.short_url}
+          />
+        ))}
+      </tbody>
+    </table>
   );
 };
