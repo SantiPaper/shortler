@@ -6,7 +6,7 @@ export const getUrls = async (req, res) => {
   if (data.length !== 0) {
     res.status(200).json(data);
   } else {
-    res.status(400).send("Data is null");
+    res.status(404).send("Data is null");
   }
 };
 
