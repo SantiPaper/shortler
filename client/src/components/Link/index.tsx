@@ -1,19 +1,21 @@
 import style from "./style.module.css";
-import { getNewDate } from "../../../utils/getNewDate";
+import { GetNewDate } from "../../../utils/GetNewDate";
 
 type Props = {
   name: string;
   link: string;
   shorter: string;
   createAt: string;
+  onDelete: (id: string) => void;
 };
 
-export const Link = ({ name, link, shorter, createAt }: Props) => {
+export const Link = ({ name, link, shorter, createAt, onDelete }: Props) => {
   const date = new Date(createAt);
-
-  const dateString = getNewDate(date);
-
   const newShortUrl = `${import.meta.env.VITE_DB_URL}${shorter}`;
+
+  const handleDelete = () => {
+    onDelete(shorter);
+  };
 
   return (
     <tr className={style.links__tr}>
@@ -29,7 +31,13 @@ export const Link = ({ name, link, shorter, createAt }: Props) => {
       <td className={style.links__td}>
         <a href={link}>{link}</a>
       </td>
-      <td className={style.links__td}>{dateString}</td>
+      <td className={style.links__td}>
+        <GetNewDate date={date} />
+      </td>
+      <td className={style.links__td}>
+        {" "}
+        <button onClick={handleDelete}>Eliminar</button>
+      </td>
     </tr>
   );
 };
