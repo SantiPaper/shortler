@@ -22,3 +22,11 @@
   padding: 0.5rem;
   text-align: start;
 }
+
+.notUrl {
+  margin-top: 6rem;
+  font-size: var(--font-size-400);
+  font-weight: 400;
+  color: var(--clr-pink-600);
+  animation: forwards 500ms fadeIn;
+}

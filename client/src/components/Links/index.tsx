@@ -4,51 +4,45 @@ import { Links as typeLinks } from "../../../types/url";
 
 type Props = {
   data: typeLinks[];
+  onDelete: (id: string) => void;
+  loading: boolean;
 };
 
-export const Links = ({ data }: Props) => {
-  /* const mockArr = [
-    {
-      name: "Perfil linkedin",
-      link: "https://www.facebook.com/irina.montanari/?locale=es_LA",
-      id: 1,
-      shorter: "https://www.vercel.com/asdfasf",
-    },
-    {
-      name: "Perfil linkedin",
-      link: "https://www.facebook.com/irina.montanari/?locale=es_LA",
-      id: 3,
-      shorter: "https://www.vercel.com/asdfasf",
-    },
-    {
-      name: "Perfil linkedin",
-      link: "https://www.facebook.com/irina.montanari/?locale=es_LA",
-      id: 2,
-      shorter: "https://www.vercel.com/asdfasf",
-    },
-  ]; */
-
+export const Links = ({ data, onDelete, loading }: Props) => {
   return (
-    <table className={style.links}>
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Url acortada</th>
-          <th>Url original</th>
-          <th>Creada</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((link) => (
-          <Link
-            link={link.original_url}
-            name={link.name}
-            key={link.short_url}
-            shorter={link.short_url}
-            createAt={link.createdAt}
-          />
-        ))}
-      </tbody>
-    </table>
+    <>
+      {loading ? (
+        <h2 className={style.notUrl}>Cargando</h2>
+      ) : (
+        <>
+          {data.length !== 0 ? (
+            <table className={style.links}>
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Url acortada</th>
+                  <th>Url original</th>
+                  <th>Creada</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((link) => (
+                  <Link
+                    link={link.original_url}
+                    name={link.name}
+                    key={link.short_url}
+                    shorter={link.short_url}
+                    createAt={link.createdAt}
+                    onDelete={onDelete}
+                  />
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <h2 className={style.notUrl}>No tienes urls acortadas</h2>
+          )}
+        </>
+      )}
+    </>
   );
 };
