@@ -15,3 +15,7 @@
 .links__td a {
   color: inherit;
 }
+
+.links__td span {
+  display: block;
+}
