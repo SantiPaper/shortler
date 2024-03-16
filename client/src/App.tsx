@@ -1,34 +1,16 @@
-import { useEffect, useState } from "react";
 import { Container } from "./components/Container";
-import { CreateButton } from "./components/CreateButton";
 import { Form } from "./components/Form";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { Links } from "./components/Links";
 import style from "./style.module.css";
 import axios from "axios";
-import { Links as typeLinks } from "../types/url";
+import { useDataFetching } from "../hooks/useFetchData";
 
 function App() {
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(import.meta.env.VITE_DB_URL);
-      setData(response.data);
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const [data, setData] = useState<Array<typeLinks>>([]);
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const [showForm, setShowForm] = useState<boolean>(false);
-
-  const toggleForm = (showForm: boolean) => {
-    setShowForm(showForm);
-  };
+  const { data, setData, fetchData, loading } = useDataFetching(
+    import.meta.env.VITE_DB_URL
+  );
 
   const onSubmit = async (name: string, original_url: string) => {
     try {
@@ -37,10 +19,19 @@ function App() {
         original_url,
       });
       fetchData();
-
       console.log("Respuesta del servidor:", response.data);
     } catch (error) {
       console.error("Error al enviar la solicitud:", error);
+    }
+  };
+
+  const onDelete = async (id: string) => {
+    try {
+      await axios.delete(import.meta.env.VITE_DB_URL + id);
+      const updatedData = data.filter((item) => item.short_url !== id);
+      setData(updatedData);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -50,9 +41,8 @@ function App() {
         <Header />
         <main className="main">
           <Hero />
-          <CreateButton toggleForm={toggleForm} showForm={showForm} />
-          {showForm ? <Form onSubmit={onSubmit} /> : null}
-          <Links data={data} />
+          <Form onSubmit={onSubmit} />
+          <Links data={data} onDelete={onDelete} loading={loading} />
         </main>
       </Container>
     </div>
