@@ -22,9 +22,9 @@ export const Form = ({ onSubmit }: Props) => {
       link,
     };
 
-    const valuesGift = Object.values(linkOnSubmit);
+    const valuesLink = Object.values(linkOnSubmit);
 
-    if (valuesGift.some((v) => !v)) {
+    if (valuesLink.some((v) => !v)) {
       return;
     }
     onSubmit(linkOnSubmit.name, linkOnSubmit.link);
@@ -39,15 +39,14 @@ export const Form = ({ onSubmit }: Props) => {
             className={style.form__input}
             type="text"
             id="name"
-            placeholder="Ej: Santiago linkedin"
+            placeholder="Perfil linkedin"
             name="name"
           />
-        </div>
-        <div>
+
           <label htmlFor="link">Link para acortar</label>
           <input
             className={style.form__input}
-            placeholder="Link para acortar"
+            placeholder="https://www.linkedin.com/in/santiagovitelli/"
             type="text"
             id="link"
             name="link"
