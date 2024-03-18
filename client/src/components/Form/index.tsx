@@ -47,7 +47,7 @@ export const Form = ({ onSubmit }: Props) => {
           <input
             className={style.form__input}
             placeholder="https://www.linkedin.com/in/santiagovitelli/"
-            type="text"
+            type="url"
             id="link"
             name="link"
           />

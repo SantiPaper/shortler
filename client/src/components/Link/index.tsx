@@ -35,7 +35,6 @@ export const Link = ({ name, link, shorter, createAt, onDelete }: Props) => {
         <GetNewDate date={date} />
       </td>
       <td className={style.links__td}>
-        {" "}
         <button onClick={handleDelete}>Eliminar</button>
       </td>
     </tr>

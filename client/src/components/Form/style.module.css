@@ -39,8 +39,8 @@ form label {
 }
 
 .form__input {
-  background-color: var(--clr-gray-700);
-  color: var(--clr-gray-100);
+  background-color: var(--clr-gray-100);
+  color: var(--clr-gray-700);
   border: 1px solid var(--clr-gray-900);
   border-radius: 0.5rem;
   padding: 0.3rem;
@@ -49,10 +49,10 @@ form label {
 
 .form__button {
   padding: 1rem 2rem;
-  background-color: var(--clr-gray-700);
+  background-color: var(--clr-gray-100);
   border: none;
   border-radius: 0.4rem;
-  color: var(--clr-gray-100);
+  color: var(--clr-gray-700);
   font-weight: 800;
   cursor: pointer;
   font-size: var(--font-size-100);

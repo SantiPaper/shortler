@@ -16,13 +16,14 @@ export const Links = ({ data, onDelete, loading }: Props) => {
       ) : (
         <>
           {data.length !== 0 ? (
-            <table className={style.links}>
+            <table cellSpacing={0} className={style.links}>
               <thead>
                 <tr>
                   <th>Nombre</th>
                   <th>Url acortada</th>
                   <th>Url original</th>
                   <th>Creada</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -39,7 +40,7 @@ export const Links = ({ data, onDelete, loading }: Props) => {
               </tbody>
             </table>
           ) : (
-            <h2 className={style.notUrl}>No tienes urls acortadas</h2>
+            <h2 className={style.notUrl}>Aun no tienes urls acortadas</h2>
           )}
         </>
       )}

@@ -15,18 +15,18 @@
   justify-content: center;
   margin-top: 12rem;
   padding: 0 5rem;
-  gap: 3rem;
+  gap: 1rem;
   animation: fadeIn 500ms forwards;
 }
 
 .hero__text {
   font-size: var(--font-size-800);
   text-align: center;
-  color: var(--clr-pink-800);
+  color: var(--clr-gray-100);
 }
 
 .hero__description {
-  color: var(--clr-pink-600);
+  color: var(--clr-gray-300);
 
   font-size: var(--font-size-200);
   text-align: center;
