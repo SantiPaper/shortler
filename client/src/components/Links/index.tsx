@@ -1,6 +1,7 @@
 import { Link } from "../Link";
 import style from "./style.module.css";
 import { Links as typeLinks } from "../../../types/url";
+import { useAuth0 } from "@auth0/auth0-react";
 
 type Props = {
   data: typeLinks[];
@@ -9,6 +10,7 @@ type Props = {
 };
 
 export const Links = ({ data, onDelete, loading }: Props) => {
+  const { user } = useAuth0();
   return (
     <>
       {loading ? (
@@ -27,16 +29,17 @@ export const Links = ({ data, onDelete, loading }: Props) => {
                 </tr>
               </thead>
               <tbody>
-                {data.map((link) => (
-                  <Link
-                    link={link.original_url}
-                    name={link.name}
-                    key={link.short_url}
-                    shorter={link.short_url}
-                    createAt={link.createdAt}
-                    onDelete={onDelete}
-                  />
-                ))}
+                {user &&
+                  data.map((link) => (
+                    <Link
+                      link={link.original_url}
+                      name={link.name}
+                      key={link.short_url}
+                      shorter={link.short_url}
+                      createAt={link.createdAt}
+                      onDelete={onDelete}
+                    />
+                  ))}
               </tbody>
             </table>
           ) : (

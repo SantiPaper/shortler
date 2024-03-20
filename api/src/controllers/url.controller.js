@@ -2,7 +2,8 @@ import { shortenerUrl } from "../utils/functions.js";
 import { shortUrls } from "../models/shortUrls.js";
 
 export const getUrls = async (req, res) => {
-  const data = await shortUrls.findAll();
+  const { userID } = req.body;
+  const data = await shortUrls.findAll({ where: { userID: userID } });
   if (data.length !== 0) {
     res.status(200).json(data);
   } else {
@@ -21,17 +22,21 @@ export const getSingleUrl = async (req, res) => {
 };
 
 export const createUrl = async (req, res) => {
-  const { original_url, name } = await req.body;
+  const { original_url, name, userID } = await req.body;
   if (!original_url) {
     return res.status(400).json({ error: "Url is required" });
   }
+  if (!userID) {
+    return res.status(400).json({ error: "Not authenticate" });
+  }
   const shortUrl = await shortenerUrl();
 
-  if ((shortUrl, original_url, name)) {
+  if ((shortUrl, original_url, name, userID)) {
     const newData = await shortUrls.create({
       original_url: original_url,
       short_url: shortUrl,
       name: name,
+      userID: userID,
     });
     res.send(newData);
   } else {

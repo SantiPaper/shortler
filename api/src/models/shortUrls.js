@@ -16,6 +16,9 @@ export const shortUrls = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    userID: {
+      type: DataTypes.STRING,
+    },
   },
   {
     timestamps: true,

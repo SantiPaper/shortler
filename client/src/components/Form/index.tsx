@@ -1,17 +1,21 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import style from "./style.module.css";
 import { FormEvent } from "react";
 
 type Props = {
-  onSubmit: (name: string, link: string) => void;
+  onSubmit: (name: string, link: string, userID: string | undefined) => void;
 };
 
 export const Form = ({ onSubmit }: Props) => {
+  const { user } = useAuth0();
+
   const handleSubmit = (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
     const form = ev.currentTarget;
     const formData = new FormData(form);
     const name = formData.get("name")!.toString();
     let link = formData.get("link")!.toString();
+    const userID = user?.email;
 
     if (!link.startsWith("https://www.")) {
       link = "https://www." + link;
@@ -20,6 +24,7 @@ export const Form = ({ onSubmit }: Props) => {
     const linkOnSubmit = {
       name,
       link,
+      userID,
     };
 
     const valuesLink = Object.values(linkOnSubmit);
@@ -27,7 +32,9 @@ export const Form = ({ onSubmit }: Props) => {
     if (valuesLink.some((v) => !v)) {
       return;
     }
-    onSubmit(linkOnSubmit.name, linkOnSubmit.link);
+    console.log(linkOnSubmit);
+    onSubmit(linkOnSubmit.name, linkOnSubmit.link, linkOnSubmit.userID);
+
     form.reset();
   };
   return (

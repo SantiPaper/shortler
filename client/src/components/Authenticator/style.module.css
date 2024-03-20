@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  align-items: center;
+  height: fit-content;
+  gap: 2rem;
+}
+
+.container h3 {
+  font-weight: 500;
+}
+
+.container span {
+  font-weight: 800;
+}
+
+.container button {
+  background-color: transparent;
+  border: none;
+  color: var(--clr-gray-100);
+  border-bottom: 1px solid var(--clr-gray-100);
+  cursor: pointer;
+  font-size: var(--font-size-100);
+  font-weight: 500;
+}
