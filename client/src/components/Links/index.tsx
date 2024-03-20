@@ -40,7 +40,7 @@ export const Links = ({ data, onDelete, loading }: Props) => {
               </tbody>
             </table>
           ) : (
-            <h2 className={style.notUrl}>Aun no tienes urls acortadas</h2>
+            <h2 className={style.notUrl}>No tienes urls acortadas</h2>
           )}
         </>
       )}
