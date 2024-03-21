@@ -26,11 +26,16 @@ export const createUrl = async (req, res) => {
   if (!original_url) {
     return res.status(400).json({ error: "Url is required" });
   }
-  if (!userID) {
-    return res.status(400).json({ error: "Not authenticate" });
-  }
   const shortUrl = await shortenerUrl();
 
+  if (!userID && name && original_url && shortUrl) {
+    return res.status(200).send({
+      name: name,
+      original_url: original_url,
+      short_url: shortUrl,
+      createdAt: new Date(),
+    });
+  }
   if ((shortUrl, original_url, name, userID)) {
     const newData = await shortUrls.create({
       original_url: original_url,
