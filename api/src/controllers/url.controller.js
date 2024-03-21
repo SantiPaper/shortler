@@ -2,7 +2,7 @@ import { shortenerUrl } from "../utils/functions.js";
 import { shortUrls } from "../models/shortUrls.js";
 
 export const getUrls = async (req, res) => {
-  const { userID } = req.body;
+  const { userID } = req.query;
   const data = await shortUrls.findAll({ where: { userID: userID } });
   if (data.length !== 0) {
     res.status(200).json(data);
