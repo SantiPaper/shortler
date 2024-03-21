@@ -5,26 +5,31 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export const useDataFetching = (url: string) => {
   const [data, setData] = useState<Array<typeLinks>>([]);
-  const [loading, setLoading] = useState(true);
+  const { user, isLoading } = useAuth0();
+  const [userInfoReady, setUserInfoReady] = useState(false);
 
-  const { user } = useAuth0();
+  useEffect(() => {
+    if (!isLoading && user) {
+      setUserInfoReady(true);
+    }
+  }, [isLoading, user]);
 
   const fetchData = async () => {
     try {
-      const response = await axios.post(url, {
-        userID: user?.id, // Envías el ID de usuario en el cuerpo de la solicitud
-      });
-      setData(response.data);
-      setLoading(false);
+      if (userInfoReady) {
+        const response = await axios.get(`${url}?userID=${user?.email}`);
+        console.log(response.data);
+        setData(response.data);
+      }
     } catch (error) {
       console.error(error);
-      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchData();
-  }, [url]);
+  }, [url, user, userInfoReady]);
 
-  return { data, loading, setData, fetchData };
+  // Retornamos también la función setData para que pueda ser utilizada desde fuera del hook
+  return { data, setData, fetchData };
 };

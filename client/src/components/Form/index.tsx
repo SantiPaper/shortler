@@ -32,7 +32,6 @@ export const Form = ({ onSubmit }: Props) => {
     if (valuesLink.some((v) => !v)) {
       return;
     }
-    console.log(linkOnSubmit);
     onSubmit(linkOnSubmit.name, linkOnSubmit.link, linkOnSubmit.userID);
 
     form.reset();

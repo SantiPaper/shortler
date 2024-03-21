@@ -6,14 +6,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 type Props = {
   data: typeLinks[];
   onDelete: (id: string) => void;
-  loading: boolean;
 };
 
-export const Links = ({ data, onDelete, loading }: Props) => {
-  const { user } = useAuth0();
+export const Links = ({ data, onDelete }: Props) => {
+  const { user, isLoading } = useAuth0();
+
   return (
     <>
-      {loading ? (
+      {isLoading ? (
         <h2 className={style.notUrl}>Cargando</h2>
       ) : (
         <>

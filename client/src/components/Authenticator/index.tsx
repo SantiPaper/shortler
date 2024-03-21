@@ -4,10 +4,9 @@ import style from "./style.module.css";
 export const Authenticator = () => {
   const { user, logout, loginWithRedirect, isAuthenticated, isLoading } =
     useAuth0();
-  console.log(user);
 
   if (isLoading) {
-    return <h2>Loading</h2>;
+    return;
   }
   return (
     <div className={style.container}>

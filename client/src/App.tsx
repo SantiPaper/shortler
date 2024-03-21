@@ -8,7 +8,7 @@ import axios from "axios";
 import { useDataFetching } from "./hooks/useFetchData";
 
 function App() {
-  const { data, setData, fetchData, loading } = useDataFetching(
+  const { data, setData, fetchData } = useDataFetching(
     import.meta.env.VITE_DB_URL
   );
 
@@ -47,7 +47,7 @@ function App() {
         <main className="main">
           <Hero />
           <Form onSubmit={onSubmit} />
-          <Links data={data} onDelete={onDelete} loading={loading} />
+          <Links data={data} onDelete={onDelete} />
         </main>
       </Container>
     </div>
