@@ -6,25 +6,46 @@ import { Links } from "./components/Links";
 import style from "./style.module.css";
 import axios from "axios";
 import { useDataFetching } from "./hooks/useFetchData";
+import { useEffect, useState } from "react";
+import { Links as typeLinks } from "../types/url";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function App() {
-  const { data, setData, fetchData } = useDataFetching(
+  const { user, isLoading } = useAuth0();
+
+  const [dataStorage, setDataStorage] = useState<typeLinks[]>(() =>
+    JSON.parse(localStorage.getItem("gift") || "[]")
+  );
+
+  useEffect(() => {
+    localStorage.setItem("gift", JSON.stringify(dataStorage));
+  }, [dataStorage]);
+
+  const { data, setData, fetchData, loading } = useDataFetching(
     import.meta.env.VITE_DB_URL
   );
 
   const onSubmit = async (
     name: string,
     original_url: string,
-    userID: string | undefined
+    userID?: string | undefined
   ) => {
     try {
-      const response = await axios.post(import.meta.env.VITE_DB_URL, {
-        name,
-        original_url,
-        userID,
-      });
-      fetchData();
-      console.log("Respuesta del servidor:", response.data);
+      if (name && original_url && userID) {
+        await axios.post(import.meta.env.VITE_DB_URL, {
+          name,
+          original_url,
+          userID,
+        });
+        fetchData();
+      } else if (!userID && name && original_url) {
+        const response = await axios.post(import.meta.env.VITE_DB_URL, {
+          name,
+          original_url,
+        });
+
+        setDataStorage([...data, response.data]);
+      }
     } catch (error) {
       console.error("Error al enviar la solicitud:", error);
     }
@@ -32,11 +53,18 @@ function App() {
 
   const onDelete = async (id: string) => {
     try {
-      await axios.delete(import.meta.env.VITE_DB_URL + id);
-      const updatedData = data.filter((item) => item.short_url !== id);
-      setData(updatedData);
+      if (user && !isLoading) {
+        await axios.delete(import.meta.env.VITE_DB_URL + id);
+        const updatedData = data.filter((item) => item.short_url !== id);
+        setData(updatedData);
+      } else {
+        const updateDataStorage = dataStorage.filter(
+          (item) => item.short_url !== id
+        );
+        setDataStorage(updateDataStorage);
+      }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -46,8 +74,13 @@ function App() {
         <Header />
         <main className="main">
           <Hero />
-          <Form onSubmit={onSubmit} />
-          <Links data={data} onDelete={onDelete} />
+          <Form onSubmit={onSubmit} dataStorage={dataStorage} />
+          <Links
+            dataStorage={dataStorage}
+            data={data}
+            onDelete={onDelete}
+            loading={loading}
+          />
         </main>
       </Container>
     </div>

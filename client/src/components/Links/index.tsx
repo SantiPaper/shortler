@@ -6,18 +6,21 @@ import { useAuth0 } from "@auth0/auth0-react";
 type Props = {
   data: typeLinks[];
   onDelete: (id: string) => void;
+  loading: boolean;
+  dataStorage: typeLinks[];
 };
 
-export const Links = ({ data, onDelete }: Props) => {
-  const { user, isLoading } = useAuth0();
+export const Links = ({ data, onDelete, loading, dataStorage }: Props) => {
+  const { user } = useAuth0();
 
   return (
     <>
-      {isLoading ? (
+      {loading ? (
         <h2 className={style.notUrl}>Cargando</h2>
       ) : (
         <>
-          {data.length !== 0 ? (
+          {(user && data.length !== 0) ||
+          (!user && dataStorage.length !== 0) ? (
             <table cellSpacing={0} className={style.links}>
               <thead>
                 <tr>
@@ -30,7 +33,19 @@ export const Links = ({ data, onDelete }: Props) => {
               </thead>
               <tbody>
                 {user &&
+                  data.length !== 0 &&
                   data.map((link) => (
+                    <Link
+                      link={link.original_url}
+                      name={link.name}
+                      key={link.short_url}
+                      shorter={link.short_url}
+                      createAt={link.createdAt}
+                      onDelete={onDelete}
+                    />
+                  ))}
+                {!user &&
+                  dataStorage.map((link) => (
                     <Link
                       link={link.original_url}
                       name={link.name}

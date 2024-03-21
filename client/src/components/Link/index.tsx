@@ -5,7 +5,7 @@ type Props = {
   name: string;
   link: string;
   shorter: string;
-  createAt: string;
+  createAt: string | Date;
   onDelete: (id: string) => void;
 };
 

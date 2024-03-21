@@ -7,10 +7,13 @@ export const useDataFetching = (url: string) => {
   const [data, setData] = useState<Array<typeLinks>>([]);
   const { user, isLoading } = useAuth0();
   const [userInfoReady, setUserInfoReady] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!isLoading && user) {
       setUserInfoReady(true);
+    } else if (!isLoading && !user) {
+      setLoading(false);
     }
   }, [isLoading, user]);
 
@@ -18,11 +21,12 @@ export const useDataFetching = (url: string) => {
     try {
       if (userInfoReady) {
         const response = await axios.get(`${url}?userID=${user?.email}`);
-        console.log(response.data);
         setData(response.data);
-      }
+        setLoading(false);
+      } else return;
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
@@ -31,5 +35,5 @@ export const useDataFetching = (url: string) => {
   }, [url, user, userInfoReady]);
 
   // Retornamos también la función setData para que pueda ser utilizada desde fuera del hook
-  return { data, setData, fetchData };
+  return { data, setData, fetchData, loading };
 };

@@ -1,13 +1,15 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./style.module.css";
 import { FormEvent } from "react";
+import { Links as typeLink } from "../../../types/url";
 
 type Props = {
-  onSubmit: (name: string, link: string, userID: string | undefined) => void;
+  onSubmit: (name: string, link: string, userID?: string | undefined) => void;
+  dataStorage: typeLink[];
 };
 
-export const Form = ({ onSubmit }: Props) => {
-  const { user } = useAuth0();
+export const Form = ({ onSubmit, dataStorage }: Props) => {
+  const { user, isLoading } = useAuth0();
 
   const handleSubmit = (ev: FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
@@ -15,6 +17,7 @@ export const Form = ({ onSubmit }: Props) => {
     const formData = new FormData(form);
     const name = formData.get("name")!.toString();
     let link = formData.get("link")!.toString();
+
     const userID = user?.email;
 
     if (!link.startsWith("https://www.")) {
@@ -24,7 +27,6 @@ export const Form = ({ onSubmit }: Props) => {
     const linkOnSubmit = {
       name,
       link,
-      userID,
     };
 
     const valuesLink = Object.values(linkOnSubmit);
@@ -32,12 +34,24 @@ export const Form = ({ onSubmit }: Props) => {
     if (valuesLink.some((v) => !v)) {
       return;
     }
-    onSubmit(linkOnSubmit.name, linkOnSubmit.link, linkOnSubmit.userID);
+
+    if (!isLoading && !user) {
+      onSubmit(linkOnSubmit.name, linkOnSubmit.link);
+      form.reset();
+    }
+    onSubmit(linkOnSubmit.name, linkOnSubmit.link, userID);
 
     form.reset();
   };
+
   return (
     <div className={style.container}>
+      {!isLoading && !user && dataStorage.length === 1 && (
+        <p className={style.warn}>
+          Al no tener una sesión activa solamente podrás acortar solamente 1
+          enlace!
+        </p>
+      )}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Nombre</label>
@@ -48,7 +62,6 @@ export const Form = ({ onSubmit }: Props) => {
             placeholder="Perfil linkedin"
             name="name"
           />
-
           <label htmlFor="link">Link para acortar</label>
           <input
             className={style.form__input}
