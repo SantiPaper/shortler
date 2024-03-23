@@ -20,18 +20,19 @@ body {
 :root {
   --clr-gray-100: #d9d9da;
   --clr-gray-300: #b2b3b2;
-  --clr-gray-500: #3f3f3f;
+  --clr-gray-500: #373737;
   --clr-gray-700: #2d2d2d;
   --clr-gray-800: #222222;
   --clr-gray-900: #141414;
 
   --clr-blue-600: #15297c;
 
-  --font-size-100: 1.2rem;
+  --font-size-100: 1.3rem;
   --font-size-200: 1.6rem;
   --font-size-400: 1.8rem;
+  --font-size-500: 2.4rem;
   --font-size-600: 3.2rem;
-  --font-size-800: 6.4rem;
+  --font-size-800: 7rem;
 
   --font-archivo: "Archivo", sans-serif;
   --font-montserrat: "Montserrat", sans-serif;
