@@ -61,6 +61,7 @@ export const Form = ({ onSubmit, dataStorage }: Props) => {
             id="name"
             placeholder="Perfil linkedin"
             name="name"
+            required
           />
           <label htmlFor="link">Link para acortar</label>
           <input
@@ -69,6 +70,7 @@ export const Form = ({ onSubmit, dataStorage }: Props) => {
             type="url"
             id="link"
             name="link"
+            required
           />
         </div>
         <button className={style.form__button}>Acortar</button>
