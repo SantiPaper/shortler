@@ -9,6 +9,7 @@ import { useDataFetching } from "./hooks/useFetchData";
 import { useEffect, useState } from "react";
 import { Links as typeLinks } from "../types/url";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Footer } from "./components/Footer";
 
 function App() {
   const { user, isLoading } = useAuth0();
@@ -83,6 +84,7 @@ function App() {
           />
         </main>
       </Container>
+      <Footer />
     </div>
   );
 }
