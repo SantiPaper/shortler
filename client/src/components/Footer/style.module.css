@@ -1,0 +1,45 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.footer {
+  background-color: var(--clr-gray-500);
+  color: var(--clr-gray-300);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  gap: 3rem;
+  animation: forwards 500ms fadeIn;
+}
+
+ul li {
+  list-style: none;
+  font-size: var(--font-size-500);
+}
+
+ul li a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 600;
+}
+
+ul li a p {
+  font-size: var(--font-size-100);
+}
