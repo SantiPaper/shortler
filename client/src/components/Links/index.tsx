@@ -11,14 +11,20 @@ type Props = {
 };
 
 export const Links = ({ data, onDelete, loading, dataStorage }: Props) => {
-  const { user } = useAuth0();
+  const { user, isLoading } = useAuth0();
 
   return (
     <>
       {loading ? (
         <h2 className={style.notUrl}>Cargando</h2>
       ) : (
-        <>
+        <div className={style.container}>
+          {!isLoading && !user && dataStorage.length === 1 && (
+            <p className={style.warn}>
+              Al no tener una sesión activa solamente podrás acortar solamente 1
+              enlace!
+            </p>
+          )}
           {(user && data.length !== 0) ||
           (!user && dataStorage.length !== 0) ? (
             <div className={style.container__links}>
@@ -62,7 +68,7 @@ export const Links = ({ data, onDelete, loading, dataStorage }: Props) => {
           ) : (
             <h2 className={style.notUrl}>No tienes urls acortadas</h2>
           )}
-        </>
+        </div>
       )}
     </>
   );

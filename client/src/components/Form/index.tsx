@@ -1,14 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import style from "./style.module.css";
 import { FormEvent } from "react";
-import { Links as typeLink } from "../../../types/url";
 
 type Props = {
   onSubmit: (name: string, link: string, userID?: string | undefined) => void;
-  dataStorage: typeLink[];
 };
 
-export const Form = ({ onSubmit, dataStorage }: Props) => {
+export const Form = ({ onSubmit }: Props) => {
   const { user, isLoading } = useAuth0();
 
   const handleSubmit = (ev: FormEvent<HTMLFormElement>) => {
@@ -46,12 +44,6 @@ export const Form = ({ onSubmit, dataStorage }: Props) => {
 
   return (
     <div className={style.container}>
-      {!isLoading && !user && dataStorage.length === 1 && (
-        <p className={style.warn}>
-          Al no tener una sesión activa solamente podrás acortar solamente 1
-          enlace!
-        </p>
-      )}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Nombre</label>

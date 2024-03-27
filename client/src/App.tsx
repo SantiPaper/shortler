@@ -75,7 +75,7 @@ function App() {
         <Header />
         <main className="main">
           <Hero />
-          <Form onSubmit={onSubmit} dataStorage={dataStorage} />
+          <Form onSubmit={onSubmit} />
           <Links
             dataStorage={dataStorage}
             data={data}

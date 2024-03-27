@@ -8,6 +8,23 @@
   }
 }
 
+.container {
+  margin-top: 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  align-items: center;
+}
+
+.warn {
+  color: rgb(253, 0, 0);
+  font-weight: 800;
+  font-size: var(--font-size-100);
+  text-align: center;
+  animation: fadeIn 500ms forwards;
+}
+
 .container__links {
   overflow-x: auto;
   width: 100%;
@@ -18,7 +35,6 @@
   animation: forwards 500ms fadeIn;
   background-color: var(--clr-gray-700);
   color: var(--clr-gray-900);
-  margin-top: 6rem;
   margin-bottom: 4rem;
 }
 

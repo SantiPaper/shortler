@@ -16,14 +16,6 @@
   margin-top: 4rem;
 }
 
-.warn {
-  color: rgb(253, 0, 0);
-  font-weight: 800;
-  font-size: var(--font-size-100);
-  text-align: center;
-  animation: fadeIn 500ms forwards;
-}
-
 form {
   display: flex;
   flex-direction: column;
