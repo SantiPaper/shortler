@@ -1,0 +1,17 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.text {
+  margin-top: 6rem;
+  font-size: var(--font-size-600);
+  font-weight: 200;
+  color: var(--clr-gray-100);
+  animation: forwards 500ms fadeIn;
+}
