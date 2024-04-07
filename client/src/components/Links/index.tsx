@@ -2,6 +2,8 @@ import { Link } from "../Link";
 import style from "./style.module.css";
 import { Links as typeLinks } from "../../../types/url";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Warn } from "../Warn";
+import { StatusText } from "../StatusText";
 
 type Props = {
   data: typeLinks[];
@@ -14,17 +16,12 @@ export const Links = ({ data, onDelete, loading, dataStorage }: Props) => {
   const { user, isLoading } = useAuth0();
 
   return (
-    <>
+    <div className={style.container}>
       {loading ? (
-        <h2 className={style.notUrl}>Cargando</h2>
+        <StatusText text="Cargando" />
       ) : (
-        <div className={style.container}>
-          {!isLoading && !user && dataStorage.length === 1 && (
-            <p className={style.warn}>
-              ¡Al no tener una sesión activa solamente podrás acortar solamente
-              1 enlace!
-            </p>
-          )}
+        <>
+          {!isLoading && !user && dataStorage.length === 1 && <Warn />}
           {(user && data.length !== 0) ||
           (!user && dataStorage.length !== 0) ? (
             <div className={style.container__links}>
@@ -66,10 +63,10 @@ export const Links = ({ data, onDelete, loading, dataStorage }: Props) => {
               </table>
             </div>
           ) : (
-            <h2 className={style.notUrl}>No tienes urls acortadas</h2>
+            <StatusText text="No tienes urls acortadas" />
           )}
-        </div>
+        </>
       )}
-    </>
+    </div>
   );
 };
