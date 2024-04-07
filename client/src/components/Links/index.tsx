@@ -21,8 +21,8 @@ export const Links = ({ data, onDelete, loading, dataStorage }: Props) => {
         <div className={style.container}>
           {!isLoading && !user && dataStorage.length === 1 && (
             <p className={style.warn}>
-              Al no tener una sesión activa solamente podrás acortar solamente 1
-              enlace!
+              ¡Al no tener una sesión activa solamente podrás acortar solamente
+              1 enlace!
             </p>
           )}
           {(user && data.length !== 0) ||

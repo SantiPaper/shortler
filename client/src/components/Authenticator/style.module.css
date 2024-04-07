@@ -3,22 +3,24 @@
   align-items: center;
   height: fit-content;
   gap: 2rem;
+  font-weight: 500;
 }
 
 .container h3 {
+  font-size: var(--font-size-100);
   font-weight: 500;
 }
 
 .container span {
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .container button {
   background-color: transparent;
   border: none;
   color: var(--clr-gray-100);
-  border-bottom: 1px solid var(--clr-gray-100);
+  border-bottom: 1px solid var(--clr-gray-300);
   cursor: pointer;
   font-size: var(--font-size-100);
-  font-weight: 500;
+  font-weight: 600;
 }

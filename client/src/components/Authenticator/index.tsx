@@ -12,7 +12,7 @@ export const Authenticator = () => {
     <div className={style.container}>
       {user ? (
         <h3>
-          Bienvenido <span>{user.name}!</span>
+          Bienvenido <span>{user.name}</span>
         </h3>
       ) : null}
       {!isAuthenticated ? (

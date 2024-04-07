@@ -15,7 +15,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem 0;
+  padding: 1.5rem 0;
+  font-family: var(--font-archivo);
+  font-weight: 100;
 }
 
 ul {
@@ -37,9 +39,21 @@ ul li a {
   flex-direction: column;
   align-items: center;
   gap: 0.3rem;
-  font-weight: 600;
+  font-weight: 300;
 }
 
 ul li a p {
   font-size: var(--font-size-100);
+}
+
+h3 {
+  font-size: var(--font-size-100);
+  font-weight: 500;
+}
+
+a {
+  color: var(--clr-gray-100);
+  text-decoration: none;
+  gap: 0.3rem;
+  font-weight: 800;
 }
