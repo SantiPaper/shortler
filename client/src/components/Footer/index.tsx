@@ -5,7 +5,7 @@ export const Footer = () => {
     <footer className={style.footer}>
       <footer className={style.footer}>
         <h3>
-          Coded by{" "}
+          Made by{" "}
           <a href="https://www.linkedin.com/in/santiagovitelli/">
             Santiago Vitelli ❤️
           </a>
