@@ -7,7 +7,7 @@ export const Footer = () => {
         <h3>
           Hecho por{" "}
           <a href="https://www.linkedin.com/in/santiagovitelli/">
-            Santiago Vitelli
+            Santiago Vitelli ❤️
           </a>
         </h3>
       </footer>

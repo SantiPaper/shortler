@@ -52,6 +52,7 @@ h3 {
 }
 
 a {
+  margin-left: 0.15rem;
   color: var(--clr-gray-100);
   text-decoration: none;
   gap: 0.3rem;
