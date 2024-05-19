@@ -29,12 +29,12 @@ export const createUrl = async (req, res) => {
   const shortUrl = await shortenerUrl();
 
   if (!userID && name && original_url && shortUrl) {
-    return res.status(200).send({
-      name: name,
+    const newData = await shortUrls.create({
       original_url: original_url,
       short_url: shortUrl,
-      createdAt: new Date(),
+      name: name,
     });
+    res.send(newData);
   }
   if ((shortUrl, original_url, name, userID)) {
     const newData = await shortUrls.create({
