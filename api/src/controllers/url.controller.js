@@ -7,17 +7,23 @@ export const getUrls = async (req, res) => {
   if (data.length !== 0) {
     res.status(200).json(data);
   } else {
-    res.status(404).send("Data is null");
+    res.status(200).json([]);
   }
 };
 
 export const getSingleUrl = async (req, res) => {
-  const shorterUrl = req.params.short_url;
-  const url = await shortUrls.findOne({ where: { short_url: shorterUrl } });
-  if (url !== null) {
-    res.redirect(url.original_url);
-  } else {
-    res.status(404).json({ error: "Not found" });
+  try {
+    const shorterUrl = req.params.short_url;
+    const url = await shortUrls.findOne({ where: { short_url: shorterUrl } });
+
+    if (url !== null) {
+      return res.redirect(url.original_url);
+    } else {
+      return res.status(404).json({ error: "Not found" });
+    }
+  } catch (error) {
+    console.error("Error retrieving URL:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
@@ -35,8 +41,8 @@ export const createUrl = async (req, res) => {
       name: name,
     });
     res.send(newData);
-  }
-  if ((shortUrl, original_url, name, userID)) {
+    return;
+  } else if (original_url && shortUrl && name && userID) {
     const newData = await shortUrls.create({
       original_url: original_url,
       short_url: shortUrl,
