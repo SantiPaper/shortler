@@ -12,11 +12,12 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 4.6rem 0;
+  padding: 2rem 0;
 }
 
-.headertitle {
-  font-size: var(--font-size-600);
-  color: var(--clr-gray-100);
+.headerTitle {
+  font-size: var(--font-size-500);
+  color: var(--clr-blue-100);
   animation: fadeIn 500ms forwards;
+  font-weight: var(--font-weight-500);
 }
