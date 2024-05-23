@@ -9,9 +9,21 @@
 }
 
 .warn {
-  color: red;
-  font-weight: 800;
+  color: var(--clr-red-700);
+  font-weight: var(--font-weight-500);
   font-size: var(--font-size-100);
   text-align: center;
   animation: fadeIn 500ms forwards;
+  display: flex;
+  align-items: center;
+  background-color: var(--clr-red-200);
+  border-radius: 99rem;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.warn svg {
+  width: 2rem;
+  padding: 0.5rem 0;
+  color: var(--clr-red-700);
 }
