@@ -8,54 +8,94 @@
   }
 }
 
-.container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 4rem;
-}
-
 form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 3.5rem;
   animation: fadeIn 500ms forwards;
   padding: 2.5rem;
   border-radius: 0.5rem;
+  width: 100%;
+  max-width: 64rem;
+  margin-top: 4rem;
 }
 
-form div {
+.container {
   display: flex;
-  gap: 1rem;
-  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+}
+
+.inputContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 2.6rem;
 }
 
 form label {
-  color: var(--clr-gray-100);
+  color: var(--clr-blue-100);
   font-size: var(--font-size-200);
-  font-family: var(--font-archivo);
+  margin-bottom: 0.2rem;
 }
 
 .form__input {
-  background-color: var(--clr-gray-100);
-  color: var(--clr-gray-700);
-  border: 1px solid var(--clr-gray-900);
-  border-radius: 0.5rem;
-  padding: 0.3rem;
+  background-color: var(--clr-transparent-100);
+  color: var(--clr-blue-100);
+  border: 1px solid var(--clr-transparent-400);
+  border-radius: 0.6rem;
+  padding: 0.6rem 1rem;
   font-size: var(--font-size-200);
 }
 
+.form__input:focus {
+  background-color: var(--clr-blue-100);
+  outline: 2px solid var(--clr-blue-100);
+  outline-offset: 2px;
+  color: var(--clr-blue-600);
+}
+
 .form__button {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  width: fit-content;
   padding: 1rem 2rem;
-  background-color: var(--clr-gray-100);
+  background-color: var(--clr-green-400);
   border: none;
-  border-radius: 0.4rem;
-  color: var(--clr-gray-700);
-  font-weight: 800;
+  border-radius: 0.6rem;
+  color: var(--clr-green-900);
+  font-weight: var(--font-weight-700);
   cursor: pointer;
   font-size: var(--font-size-100);
-  width: fit-content;
+  margin: auto;
+  transition: background-color 0.2s ease-in;
+}
+
+.form__button:hover {
+  background-color: var(--clr-green-100);
+}
+
+.form__button:focus-visible {
+  background-color: var(--clr-green-100);
+  outline: 2px solid var(--clr-green-400);
+  outline-offset: 2px;
+}
+
+.form__button:active {
+  background-color: var(--clr-green-400);
+  transform: scale(0.98);
+}
+
+svg {
+  width: 1.4rem;
+}
+
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.6rem;
+  }
+  .inputContainer {
+    width: 90%;
+  }
 }
