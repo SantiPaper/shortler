@@ -1,9 +1,7 @@
 .links__tr {
-  font-size: var(--font-size-100);
   text-align: start;
-  background-color: var(--clr-gray-700);
-  font-weight: 700;
-  color: var(--clr-gray-100);
+  background-color: var(--clr-transparent-100);
+  color: var(--clr-white);
 }
 
 .links__td {
@@ -16,11 +14,9 @@
   text-align: center;
 }
 
-.links__td h3 {
-}
-
 .links__td a {
   color: inherit;
+  text-decoration: none;
 }
 
 .links__td span {
@@ -28,11 +24,34 @@
 }
 
 .links__td button {
-  background-color: transparent;
+  background-color: var(--clr-white);
   border: none;
-  color: red;
+  color: var(--clr-red-700);
   cursor: pointer;
-  padding: 0.5rem;
-  font-size: var(--font-size-100);
-  font-weight: 700;
+  border-radius: 99rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease-in;
+}
+
+.links__td button:hover,
+.links__td button:focus {
+  color: var(--clr-white);
+  background-color: var(--clr-red-700);
+}
+
+.links__td button:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+.links__td button:active {
+  transform: scale(0.92);
+}
+
+.links__td button svg {
+  width: 1.8rem;
 }

@@ -26,16 +26,35 @@
 .links {
   width: 100%;
   animation: forwards 500ms fadeIn;
-  background-color: var(--clr-gray-700);
-  color: var(--clr-gray-900);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: transparent;
+  font-size: var(--font-size-100);
 }
 
 .links thead {
-  background-color: var(--clr-gray-100);
+  color: var(--clr-blue-100);
+  background-color: var(--clr-transparent-400);
 }
 
 .links tr th {
-  font-size: var(--font-size-200);
-  padding: 0.5rem 1rem;
   text-align: start;
+  font-weight: 500;
+}
+
+.links td,
+.links th {
+  padding: 0.8rem 2rem;
+}
+
+.links th:nth-child(4) {
+  width: 10%;
+}
+
+.links th:not(:nth-child(4)) {
+  width: 18%;
+}
+
+.links th:last-child {
+  width: 3%;
 }
