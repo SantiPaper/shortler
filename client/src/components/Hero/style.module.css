@@ -29,7 +29,6 @@
 
 .hero__description {
   color: var(--clr-blue-100);
-
   font-size: var(--font-size-400);
   text-align: center;
 }
@@ -49,5 +48,8 @@
 @media (max-width: 400px) {
   .hero__text {
     font-size: var(--font-size-600);
+  }
+  .hero__description {
+    font-size: var(--font-size-100);
   }
 }
