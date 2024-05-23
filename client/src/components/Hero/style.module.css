@@ -13,7 +13,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 12rem;
+  margin: 12rem 0 8rem;
   padding: 0 5rem;
   gap: 1rem;
   animation: fadeIn 500ms forwards;
@@ -22,12 +22,32 @@
 .hero__text {
   font-size: var(--font-size-800);
   text-align: center;
-  color: var(--clr-gray-100);
+  background-image: linear-gradient(white, var(--clr-blue-100));
+  background-clip: text;
+  color: transparent;
 }
 
 .hero__description {
-  color: var(--clr-gray-300);
+  color: var(--clr-blue-100);
 
-  font-size: var(--font-size-200);
+  font-size: var(--font-size-400);
   text-align: center;
+}
+
+@media (max-width: 1500px) {
+  .hero {
+    margin: 10rem 0 6rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero__text {
+    font-size: var(--font-size-700);
+  }
+}
+
+@media (max-width: 400px) {
+  .hero__text {
+    font-size: var(--font-size-600);
+  }
 }
