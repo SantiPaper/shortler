@@ -3,17 +3,21 @@ type Props = {
 };
 
 export const GetNewDate = ({ date }: Props) => {
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear();
+  const formattedDate = new Intl.DateTimeFormat("es-ar", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  }).format(date);
 
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
+  const formattedHour = new Intl.DateTimeFormat("es-ar", {
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(date);
 
   return (
     <time>
-      {`${day}-${month}-${year}`}
-      <span>{`${hours}:${minutes}hs`}</span>
+      {formattedDate}
+      <span>{formattedHour} hs</span>
     </time>
   );
 };
