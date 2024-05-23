@@ -1,26 +1,39 @@
 .container {
   display: flex;
   align-items: center;
-  height: fit-content;
   gap: 2rem;
-  font-weight: 500;
+  font-weight: var(--font-weight-500);
+  color: var(--clr-blue-100);
 }
 
-.container h3 {
+.container p {
   font-size: var(--font-size-100);
-  font-weight: 500;
-}
-
-.container span {
-  font-weight: 700;
 }
 
 .container button {
-  background-color: transparent;
+  background-color: var(--clr-transparent-600);
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.6rem;
   border: none;
-  color: var(--clr-gray-100);
-  border-bottom: 1px solid var(--clr-gray-300);
   cursor: pointer;
   font-size: var(--font-size-100);
-  font-weight: 600;
+  transition: background-color 0.1s ease;
+}
+
+.container button:hover {
+  background-color: var(--clr-transparent-400);
+}
+
+.container button:focus-visible {
+  outline: 2px solid var(--clr-blue-100);
+  background-color: var(--clr-transparent-400);
+}
+
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
 }

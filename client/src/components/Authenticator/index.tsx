@@ -10,11 +10,11 @@ export const Authenticator = () => {
   }
   return (
     <div className={style.container}>
-      {user ? (
-        <h3>
+      {user && (
+        <p>
           Bienvenido <span>{user.name}</span>
-        </h3>
-      ) : null}
+        </p>
+      )}
       {!isAuthenticated ? (
         <button onClick={() => loginWithRedirect()}>Iniciar sesión</button>
       ) : (
