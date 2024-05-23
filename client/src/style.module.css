@@ -4,4 +4,5 @@
   align-items: center;
   justify-content: space-between;
   min-height: 100vh;
+  border-top: 5px solid var(--clr-blue-100);
 }
