@@ -15,11 +15,11 @@ function App() {
   const { user, isLoading } = useAuth0();
 
   const [dataStorage, setDataStorage] = useState<typeLinks[]>(() =>
-    JSON.parse(localStorage.getItem("gift") || "[]")
+    JSON.parse(localStorage.getItem("url") || "[]")
   );
 
   useEffect(() => {
-    localStorage.setItem("gift", JSON.stringify(dataStorage));
+    localStorage.setItem("url", JSON.stringify(dataStorage));
   }, [dataStorage]);
 
   const { data, setData, fetchData, loading } = useDataFetching(
