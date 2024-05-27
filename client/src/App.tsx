@@ -2,19 +2,23 @@ import { Container } from "./components/Container";
 import { Form } from "./components/Form";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
-import { Links } from "./components/Links";
+import { LinkTable } from "./components/LinkTable";
 import style from "./style.module.css";
 import axios from "axios";
 import { useDataFetching } from "./hooks/useFetchData";
 import { useEffect, useState } from "react";
-import { Links as typeLinks } from "../types/url";
+import { Links as TypeLinks } from "../types/url";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Footer } from "./components/Footer";
 
 function App() {
   const { user, isLoading } = useAuth0();
 
-  const [dataStorage, setDataStorage] = useState<typeLinks[]>(() =>
+  const { data, setData, fetchData, loading } = useDataFetching(
+    import.meta.env.VITE_DB_URL
+  );
+
+  const [dataStorage, setDataStorage] = useState<TypeLinks[]>(() =>
     JSON.parse(localStorage.getItem("url") || "[]")
   );
 
@@ -22,30 +26,27 @@ function App() {
     localStorage.setItem("url", JSON.stringify(dataStorage));
   }, [dataStorage]);
 
-  const { data, setData, fetchData, loading } = useDataFetching(
-    import.meta.env.VITE_DB_URL
-  );
-
   const onSubmit = async (
     name: string,
     original_url: string,
-    userID?: string | undefined
+    userID?: string
   ) => {
+    if (!name || !original_url) return;
+
     try {
-      if (name && original_url && userID) {
-        await axios.post(import.meta.env.VITE_DB_URL, {
+      const { data: responseData } = await axios.post(
+        import.meta.env.VITE_DB_URL,
+        {
           name,
           original_url,
           userID,
-        });
-        fetchData();
-      } else if (!userID && name && original_url) {
-        const response = await axios.post(import.meta.env.VITE_DB_URL, {
-          name,
-          original_url,
-        });
+        }
+      );
 
-        setDataStorage([...data, response.data]);
+      if (!userID) {
+        setDataStorage([...data, responseData]);
+      } else {
+        fetchData();
       }
     } catch (error) {
       console.error("Error al enviar la solicitud:", error);
@@ -53,15 +54,14 @@ function App() {
   };
 
   const onDelete = async (id: string) => {
+    const filterById = (item: TypeLinks) => item.short_url !== id;
     try {
       if (user && !isLoading) {
         await axios.delete(import.meta.env.VITE_DB_URL + id);
-        const updatedData = data.filter((item) => item.short_url !== id);
+        const updatedData = data.filter(filterById);
         setData(updatedData);
       } else {
-        const updateDataStorage = dataStorage.filter(
-          (item) => item.short_url !== id
-        );
+        const updateDataStorage = dataStorage.filter(filterById);
         setDataStorage(updateDataStorage);
       }
     } catch (error) {
@@ -76,9 +76,8 @@ function App() {
         <main className="main">
           <Hero />
           <Form onSubmit={onSubmit} />
-          <Links
-            dataStorage={dataStorage}
-            data={data}
+          <LinkTable
+            data={user ? data : dataStorage}
             onDelete={onDelete}
             loading={loading}
           />
