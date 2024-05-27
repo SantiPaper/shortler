@@ -6,6 +6,7 @@ import {
 } from "../controllers/url.controller.js";
 
 import { Router } from "express";
+
 const router = Router();
 
 router.get("/", getUrls);
