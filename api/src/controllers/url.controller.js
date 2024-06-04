@@ -2,12 +2,22 @@ import { getHash } from "../utils/functions.js";
 import { shortUrls } from "../models/shortUrls.js";
 
 export const getUrls = async (req, res) => {
-  const { userID } = req.query;
-  const data = await shortUrls.findAll({ where: { userID } });
-  if (data.length !== 0) {
-    res.status(200).json(data);
-  } else {
-    res.status(200).json([]);
+  try {
+    let { userID } = req.query;
+
+    // Si userID no está definido en la solicitud, establecerlo como una cadena vacía
+    userID = userID || "";
+
+    const data = await shortUrls.findAll({ where: { userID } });
+
+    if (data.length !== 0) {
+      res.status(200).json(data);
+    } else {
+      res.status(200).json([]);
+    }
+  } catch (error) {
+    console.error("Error retrieving URLs:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
